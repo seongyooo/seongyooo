@@ -61,7 +61,7 @@
 
 ![Chess Board](./chess/board.svg)
 
-**⬜ White의 차례** (초기화 중...)
+**⬜ White의 차례**
 
 | | |
 |---|---|
