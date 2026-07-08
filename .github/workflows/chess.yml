@@ -30,5 +30,10 @@ jobs:
           git config user.email "action@github.com"
           git config user.name "Chess Bot 🤖"
           git add chess/ README.md
-          git diff --cached --quiet && echo "변경 없음" || git commit -m "♟️ auto chess move"
-          git push
+          if ! git diff --cached --quiet; then
+            git commit -m "♟️ auto chess move"
+            git pull --rebase origin main
+            git push
+          else
+            echo "변경 없음 — 커밋 건너뜀"
+          fi

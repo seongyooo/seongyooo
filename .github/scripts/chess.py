@@ -7,9 +7,10 @@ import json
 import random
 import urllib.request
 import urllib.error
+import sys
 
-REPO_OWNER = "seongyooo"
-REPO_NAME  = "seongyooo"
+REPO_OWNER      = "seongyooo"
+REPO_NAME       = "seongyooo"
 FEN_FILE        = "chess/game.fen"
 SVG_FILE        = "chess/board.svg"
 LAST_EVENT_FILE = "chess/last_event_id.txt"
@@ -17,14 +18,23 @@ README_FILE     = "README.md"
 GITHUB_TOKEN    = os.environ.get("GITHUB_TOKEN", "")
 
 
-# ── GitHub API ──────────────────────────────────────────────────────────────
+# ── GitHub API ───────────────────────────────────────────────────────────────
 
 def api_get(url):
     req = urllib.request.Request(url)
-    req.add_header("Authorization", f"token {GITHUB_TOKEN}")
+    if GITHUB_TOKEN:
+        req.add_header("Authorization", f"Bearer {GITHUB_TOKEN}")
     req.add_header("User-Agent", "chess-bot/1.0")
-    with urllib.request.urlopen(req) as r:
-        return json.loads(r.read())
+    req.add_header("Accept", "application/vnd.github+json")
+    try:
+        with urllib.request.urlopen(req, timeout=15) as r:
+            return json.loads(r.read())
+    except urllib.error.HTTPError as e:
+        print(f"HTTP 오류 {e.code}: {e.reason}")
+        return []
+    except Exception as e:
+        print(f"API 오류: {e}")
+        return []
 
 def get_push_events():
     return api_get(f"https://api.github.com/users/{REPO_OWNER}/events?per_page=100")
@@ -59,10 +69,9 @@ def save_last_id(eid):
     open(LAST_EVENT_FILE, "w").write(str(eid))
 
 
-# ── Chess logic ──────────────────────────────────────────────────────────────
+# ── Chess logic ───────────────────────────────────────────────────────────────
 
 def make_move(board):
-    """Random legal move; prefers captures and checks for fun."""
     legal = list(board.legal_moves)
     if not legal:
         return None
@@ -86,7 +95,7 @@ def status_line(board):
     return f"**{turn}의 차례{check}**"
 
 
-# ── README update ────────────────────────────────────────────────────────────
+# ── README update ─────────────────────────────────────────────────────────────
 
 def move_history_str(board):
     history, tmp = [], chess.Board()
@@ -128,22 +137,23 @@ def update_readme(board):
     open(README_FILE, "w", encoding="utf-8").write(new_content)
 
 
-# ── Main ─────────────────────────────────────────────────────────────────────
+# ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
-    board    = load_board()
-    last_id  = load_last_id()
-    events   = get_push_events()
+    board   = load_board()
+    last_id = load_last_id()
+    events  = get_push_events()
 
+    # API 실패 시 보드 SVG만 갱신하고 정상 종료
     if not events:
-        print("이벤트 없음")
+        print("이벤트를 가져오지 못했습니다 — SVG만 갱신")
         save_board(board)
         update_readme(board)
         return
 
     latest_id = events[0]["id"]
 
-    # 첫 실행: 기준점만 저장하고 종료
+    # 첫 실행: 기준점만 저장
     if last_id is None:
         print(f"초기화 완료 — 기준 이벤트 ID: {latest_id}")
         save_last_id(latest_id)
@@ -173,7 +183,6 @@ def main():
             board = chess.Board()
         move = make_move(board)
         if move:
-            san = chess.Board(board.fen())
             print(f"  수 반영: {move.uci()}")
             moves_made += 1
 
@@ -183,4 +192,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        print(f"예외 발생: {e}")
+        import traceback
+        traceback.print_exc()
+        sys.exit(1)
