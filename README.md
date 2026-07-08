@@ -47,7 +47,7 @@
 ## 🟦 Voxel Contribution Graph
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./profile-3d-contrib/profile-night-rainbow-animate.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="./profile-3d-contrib/profile-night-rainbow.svg">
   <source media="(prefers-color-scheme: light)" srcset="./profile-3d-contrib/profile-gitblock.svg">
-  <img alt="3D voxel contribution graph" src="./profile-3d-contrib/profile-night-rainbow-animate.svg">
+  <img alt="3D voxel contribution graph" src="./profile-3d-contrib/profile-night-rainbow.svg">
 </picture>
