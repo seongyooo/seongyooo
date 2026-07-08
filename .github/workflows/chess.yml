@@ -1,0 +1,34 @@
+name: Chess Auto Move
+
+on:
+  schedule:
+    - cron: "0 * * * *"  # 매시간 실행
+  workflow_dispatch:      # 수동 실행 (초기화용)
+
+jobs:
+  chess:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install chess
+
+      - name: Run chess bot
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python .github/scripts/chess.py
+
+      - name: Commit & Push
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "Chess Bot 🤖"
+          git add chess/ README.md
+          git diff --cached --quiet && echo "변경 없음" || git commit -m "♟️ auto chess move"
+          git push

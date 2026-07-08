@@ -51,3 +51,21 @@
   <source media="(prefers-color-scheme: light)" srcset="./profile-3d-contrib/profile-gitblock.svg">
   <img alt="3D voxel contribution graph" src="./profile-3d-contrib/profile-night-rainbow.svg">
 </picture>
+
+---
+
+<!-- CHESS_START -->
+## ♟️ Chess — 커밋하면 수가 자동으로 놓여요!
+
+> 내가 어느 레포에든 커밋할 때마다 체스 수가 자동으로 반영돼요 🤖
+
+![Chess Board](./chess/board.svg)
+
+**⬜ White의 차례** (초기화 중...)
+
+| | |
+|---|---|
+| 총 수 | 0수 |
+| 최근 수 | 없음 |
+
+<!-- CHESS_END -->

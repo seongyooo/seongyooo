@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"C:/Users/seonl/Desktop/c/2026/summer/readme/.github/scripts\")",
+      "Bash(mkdir -p \"C:/Users/seonl/Desktop/c/2026/summer/readme/chess\")"
+    ]
+  }
+}
