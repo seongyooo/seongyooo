@@ -23,7 +23,7 @@ jobs:
       - name: Run chess bot
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python .github/scripts/chess.py
+        run: python .github/scripts/chess_bot.py
 
       - name: Commit & Push
         run: |
