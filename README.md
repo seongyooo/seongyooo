@@ -52,11 +52,11 @@
 
 ![Chess Board](./chess/board.svg)
 
-**⬜ White의 차례**
+**⬛ Black의 차례 ⚠️ 체크!**
 
 | | |
 |---|---|
 | 총 수 | 1수 |
-| 최근 수 | dxd5 |
+| 최근 수 | Bb5 |
 
 <!-- CHESS_END -->
