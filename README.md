@@ -45,18 +45,16 @@
 
 ---
 
-<!-- CHESS_START -->
-## ♟️ Chess — 커밋하면 수가 자동으로 놓여요!
+<!-- STREAK_START -->
+## 🔥 Commit Streak
 
-> 내가 어느 레포에든 커밋할 때마다 체스 수가 자동으로 반영돼요 🤖
+> 매일 커밋하면 스트릭이 쌓여요!
 
-![Chess Board](./chess/board.svg)
-
-**⬜ White의 차례**
+![Commit Streak](./streak/streak.svg)
 
 | | |
 |---|---|
-| 총 수 | 1수 |
-| 최근 수 | Nxd7 |
+| 현재 스트릭 | **0일** |
+| 최장 스트릭 | **0일** |
 
-<!-- CHESS_END -->
+<!-- STREAK_END -->
