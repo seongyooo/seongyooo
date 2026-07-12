@@ -45,16 +45,11 @@
 
 ---
 
-<!-- STREAK_START -->
 ## 🔥 Commit Streak
 
-> 매일 커밋하면 스트릭이 쌓여요!
+<div align="center">
 
-![Commit Streak](./streak/streak.svg)
+[![GitHub Streak](https://streak-stats.demolab.com?user=seongyooo&theme=dark&hide_border=true&date_format=Y.n.j)](https://git.io/streak-stats)
 
-| | |
-|---|---|
-| 현재 스트릭 | **36일** |
-| 최장 스트릭 | **36일** |
 
-<!-- STREAK_END -->
+</div>
