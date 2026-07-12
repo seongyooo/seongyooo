@@ -49,7 +49,7 @@
 
 <div align="center">
 
-[![GitHub Streak](https://streak-stats.demolab.com?user=seongyooo&theme=dark&hide_border=true&date_format=Y.n.j)](https://git.io/streak-stats)
+<a href="https://git.io/streak-stats"><img src="./streak/streak.svg" alt="GitHub Streak" /></a>
 
 
 </div>
